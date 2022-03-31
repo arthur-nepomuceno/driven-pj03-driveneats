@@ -5,12 +5,17 @@ font-family: 'Righteous', cursive;
 font-family: 'Roboto', sans-serif;
 */
 
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 /* TOP BAR STARTS HERE */
 .top-bar {
     background-color: #cf2b2b;
     width: 414px;
     height: 92px;
-    margin: 0 auto;
     padding-top: 8px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
@@ -63,18 +68,12 @@ font-family: 'Roboto', sans-serif;
 .page-content {
     background-color: #eeeeee;
     width: 414px;
-    height: 2000px;
-    margin: 0 auto;
-    padding-left: 20px;
-    padding-bottom: 16px;
-
-    border: 1px dashed black;
-    box-sizing: border-box;
+    height: fit-content;
+    padding-top: 30px;
 }
 
 .menu-title {
     color: #333333;
-    margin-top: 30px;
 
     font-family: 'Righteous', cursive;
     font-style: normal;
@@ -82,25 +81,34 @@ font-family: 'Roboto', sans-serif;
     font-size: 26px;
     line-height: 32px;
     letter-spacing: 0.018em;
+
+    /*border: 1px dashed black;
+    box-sizing: border-box;*/
+}
+
+.menu-title p {
+    margin-left: 18px;
 }
 
 .menu-options {
-    /*border: 1px dashed black;
-    box-sizing: border-box;*/
-
     width: 100%;
     height: fit-content;
     margin-top: 18px;
+    margin-bottom: 30px;
 
     display: flex;
-    
+
+    /*border: 1px dashed black;
+    box-sizing: border-box;*/   
+
+    overflow-x: scroll;
 }
 
 .option {
     background-color: #ffffff;
-    width: 172px;
+    min-width: 172px;
     height: 216px;
-    margin-right: 16px;
+    margin-left: 18px;      
 
     border: 6px solid #ffffff;
     box-sizing: border-box;
@@ -110,6 +118,8 @@ font-family: 'Roboto', sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    
 }
 
 .option:hover {
@@ -121,10 +131,8 @@ font-family: 'Roboto', sans-serif;
     height: 87px;
     border-radius: 4px;
 
-    margin: 0 auto;
-
-    border: 1px dashed black;
-    box-sizing: border-box;
+    /*border: 1px dashed black;
+    box-sizing: border-box;*/
 }
 
 .option-title {
@@ -137,10 +145,10 @@ font-family: 'Roboto', sans-serif;
     font-size: 16px;
     line-height: 19px;
 
-    margin: 8px auto 0;
+    margin-top: 8px;
 
-    border: 1px dashed black;
-    box-sizing: border-box;
+    /*border: 1px dashed black;
+    box-sizing: border-box;*/
 }
 
 .option-description {
@@ -154,10 +162,14 @@ font-family: 'Roboto', sans-serif;
     line-height: 18px;
     color: #a6a6a6;
 
-    margin: 4px auto 0;
+    margin-top: 4px;
 
-    border: 1px dashed black;
-    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    /*border: 1px dashed black;
+    box-sizing: border-box;*/
 }
 
 .option-price {
@@ -166,25 +178,26 @@ font-family: 'Roboto', sans-serif;
 
     font-family: 'Roboto';
     font-style: normal;
-    font-weight: 400;
+    font-weight: 500;
     font-size: 16px;
     line-height: 19px;
 
-    margin: 5px auto 0;
+    margin-top: 5px;
 
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
 
-    border: 1px dashed black;
-    box-sizing: border-box;
+    /*border: 1px dashed black;
+    box-sizing: border-box;*/
 }
 
 .option-price ion-icon {
     color: #32b72f;
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
 }
+
 /* PAGE CONTENT ENDS HERE */
 
 /*
@@ -197,7 +210,6 @@ font-family: 'Roboto', sans-serif;
     background-color: #ffffff;
     width: 414px;
     height: 92px;
-    margin: 0 auto;
 
     position: sticky;
     bottom: 0;
