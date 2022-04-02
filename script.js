@@ -76,7 +76,27 @@ function releaseOrderButton() {
 
 
 function finishOrder() {
-    alert("botão funfando")
+    const selectedMeal = document.querySelector(".meals > .selected");
+    const mealName = selectedMeal.querySelector(".option-title p").innerHTML
+    const mealPrice = selectedMeal.querySelector(".option-price p").innerHTML;
 
-    
+    const selectedDrink = document.querySelector(".drinks > .selected");
+    const drinkName = selectedDrink.querySelector(".option-title p").innerHTML
+    const drinkPrice = selectedDrink.querySelector(".option-price p").innerHTML
+
+    const selectedDessert = document.querySelector(".desserts > .selected");
+    const dessertName = selectedDessert.querySelector(".option-title p").innerHTML
+    const dessertPrice = selectedDessert.querySelector(".option-price p").innerHTML
+
+    const total = (Number(mealPrice.split(" ").pop().replace(",", ".")) 
+    + Number(drinkPrice.split(" ").pop().replace(",", ".")) 
+    + Number(dessertPrice.split(" ").pop().replace(",", "."))).toFixed(2) 
+
+
+
+    alert(`Olá, gostaria de fazer o pedido:
+    - Prato: ${mealName}
+    - Bebida: ${drinkName}
+    - Sobremesa: ${dessertName}
+    Total: R$ ${total}`);
 }; 

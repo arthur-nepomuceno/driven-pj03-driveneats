@@ -48,5 +48,15 @@ R:
     - First I need to get the choises infos.
     - Then I need to insert it inside the official message.
 
+002.2 What do I want to happen now?
+R:
+    I want the message to be sent to the whastapp of the restaurant.
+
+002.3 How do I want it to happen?
+R:
+    -  By linking the order button with a link to the whatsapp of 
+    restaurant.
+    - By adding the message it.
+
 
 
