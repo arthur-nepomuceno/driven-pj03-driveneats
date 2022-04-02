@@ -41,4 +41,4 @@ EXTENDED OVERVIEW
             .option-price
 
 .bottom-bar
-    .request-button
+    .order-button
