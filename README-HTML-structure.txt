@@ -1,9 +1,5 @@
 This is a document to serve as a guideline for explaining
-how the HTML content is thought and therefore organized.
-
-It is not an official requirement of the project; it is
-a tool that I am creating for myself and for whoever is
-coming to read it.
+how the HTML content is organized.
 
 The goal is for me to easily remember the on going of the project
 and to clearly visualize how I organized the hierarchy.
@@ -13,6 +9,10 @@ Let's start!
 =========================================================================
 
 GENERAL OVERVIEW
+
+.cover (display:none)
+
+.confirm-order (display:none)
 
 .top-bar
 
@@ -26,6 +26,25 @@ GENERAL OVERVIEW
 =========================================================================
 
 EXTENDED OVERVIEW
+
+.cover (display:none)
+
+.confirm-order (display:none)
+    .confirm-title
+    .meal choice
+        meal name
+        meal price
+    .drink choice
+        drink name
+        drink price
+    .dessert choice
+        dessert name
+        dessert price
+    .user-data
+        user name
+        user addres
+    confirm button
+    cancel button
 
 .top-bar
     .top-title

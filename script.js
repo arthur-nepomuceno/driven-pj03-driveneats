@@ -76,6 +76,8 @@ function releaseOrderButton() {
 
 
 function finishOrder() {
+
+    //Getting the informations from the menu
     const selectedMeal = document.querySelector(".meals > .selected");
     const mealName = selectedMeal.querySelector(".option-title p").innerHTML
     const mealPrice = selectedMeal.querySelector(".option-price p").innerHTML;
@@ -88,15 +90,45 @@ function finishOrder() {
     const dessertName = selectedDessert.querySelector(".option-title p").innerHTML
     const dessertPrice = selectedDessert.querySelector(".option-price p").innerHTML
 
+    //Calculating the total cost of the order
     const total = (Number(mealPrice.split(" ").pop().replace(",", ".")) 
     + Number(drinkPrice.split(" ").pop().replace(",", ".")) 
-    + Number(dessertPrice.split(" ").pop().replace(",", "."))).toFixed(2) 
+    + Number(dessertPrice.split(" ").pop().replace(",", "."))).toFixed(2);
 
+    //Asking for user's name and address
+    const name = prompt("Por favor, digite o nome de quem irá receber o pedido:");
+    const address = prompt("Por favor, digite o endereço de entrega:");
 
+    //Inserting the infos on the confirm order screen
+    document.querySelector(".meal #name").innerHTML = mealName;
+    document.querySelector(".meal #price").innerHTML = mealPrice;
+    document.querySelector(".drink #name").innerHTML = drinkName;
+    document.querySelector(".drink #price").innerHTML = drinkPrice;
+    document.querySelector(".dessert #name").innerHTML = dessertName;
+    document.querySelector(".dessert #price").innerHTML = dessertPrice;
+    document.querySelector(".total-price #price").innerHTML = `R$ ${total.replace(".", ",")}`;
+    document.querySelector(".user-data #name").innerHTML = `Nome: ${name}`;
+    document.querySelector(".user-data #address").innerHTML = `Endereço: ${address}`;
+    
 
-    alert(`Olá, gostaria de fazer o pedido:
-    - Prato: ${mealName}
-    - Bebida: ${drinkName}
-    - Sobremesa: ${dessertName}
-    Total: R$ ${total}`);
-}; 
+    //Building the message to be sent on whatsapp
+    /*const message =
+    `Olá, gostaria de fazer o pedido:\n
+- Prato: ${mealName}
+- Bebida: ${drinkName}
+- Sobremesa: ${dessertName}\n
+Total: R$ ${total}\n
+Nome: ${name}
+Endereço: ${address}`;
+
+    const uriMessage = encodeURIComponent(message);*/
+
+    document.querySelector(".cover").setAttribute("style", "display: initial");
+    document.querySelector(".confirm-order").setAttribute("style", "display: initial");
+
+    //window.open(`https://wa.me/5521982235702?text=${uriMessage}`);
+};
+
+function confirmOrder() {
+    
+}
