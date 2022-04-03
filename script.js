@@ -152,3 +152,8 @@ ${address}`;
 
     window.open(`https://wa.me/5521982235702?text=${uriMessage}`);    
 }
+
+function cancelOrder() {
+    document.querySelector(".cover").setAttribute("style", "display: none");
+    document.querySelector(".confirm-order").setAttribute("style", "display: none");
+}
