@@ -109,26 +109,46 @@ function finishOrder() {
     document.querySelector(".total-price #price").innerHTML = `R$ ${total.replace(".", ",")}`;
     document.querySelector(".user-data #name").innerHTML = `Nome: ${name}`;
     document.querySelector(".user-data #address").innerHTML = `Endereço: ${address}`;
-    
-
-    //Building the message to be sent on whatsapp
-    /*const message =
-    `Olá, gostaria de fazer o pedido:\n
-- Prato: ${mealName}
-- Bebida: ${drinkName}
-- Sobremesa: ${dessertName}\n
-Total: R$ ${total}\n
-Nome: ${name}
-Endereço: ${address}`;
-
-    const uriMessage = encodeURIComponent(message);*/
 
     document.querySelector(".cover").setAttribute("style", "display: initial");
     document.querySelector(".confirm-order").setAttribute("style", "display: initial");
 
-    //window.open(`https://wa.me/5521982235702?text=${uriMessage}`);
 };
 
 function confirmOrder() {
-    
+    //Getting the informations from the menu
+    const selectedMeal = document.querySelector(".meals > .selected");
+    const mealName = selectedMeal.querySelector(".option-title p").innerHTML
+    const mealPrice = selectedMeal.querySelector(".option-price p").innerHTML;
+
+    const selectedDrink = document.querySelector(".drinks > .selected");
+    const drinkName = selectedDrink.querySelector(".option-title p").innerHTML
+    const drinkPrice = selectedDrink.querySelector(".option-price p").innerHTML
+
+    const selectedDessert = document.querySelector(".desserts > .selected");
+    const dessertName = selectedDessert.querySelector(".option-title p").innerHTML
+    const dessertPrice = selectedDessert.querySelector(".option-price p").innerHTML
+
+    //Calculating the total cost of the order
+    const total = (Number(mealPrice.split(" ").pop().replace(",", ".")) 
+    + Number(drinkPrice.split(" ").pop().replace(",", ".")) 
+    + Number(dessertPrice.split(" ").pop().replace(",", "."))).toFixed(2);
+
+    //Getting name and address informed by the user
+    const name = document.querySelector(".user-data #name").innerHTML
+    const address = document.querySelector(".user-data #address").innerHTML
+
+    //Building the message to be sent on whatsapp
+    const message =
+    `Olá, gostaria de fazer o pedido:\n
+- Prato: ${mealName}
+- Bebida: ${drinkName}
+- Sobremesa: ${dessertName}
+Total: R$ ${total}\n
+${name}
+${address}`;
+
+    const uriMessage = encodeURIComponent(message);
+
+    window.open(`https://wa.me/5521982235702?text=${uriMessage}`);    
 }
