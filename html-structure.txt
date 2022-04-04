@@ -1,0 +1,79 @@
+=========================================================================
+=========================== HTML - STRCUTURE ============================
+=========================================================================
+
+                            GENERAL OVERVIEW
+
+.body-cover (display:none)
+
+.confirm-order (display:none)
+
+.top-bar
+
+.page-content
+    .menu-title
+    .menu-options
+        .option
+        .option
+        .option
+
+.bottom-bar
+
+=========================================================================
+=========================================================================
+
+                            EXTENDED OVERVIEW
+
+.body-cover (display:none)
+
+.confirm-order (display:none)
+    .confirm-title
+    .meal choice
+        #name
+        #price
+    .drink choice
+        #name
+        #price
+    .dessert choice
+        #name
+        #price
+    .total-price
+        #name
+        #price
+    .user-data
+        #name
+        #addres
+    confirm button
+    cancel button
+
+.top-bar
+    .top-title
+    .top-subtitle
+
+.page-content
+    .menu-title
+    .meals menu-options
+        .option (3x)
+            .option-image
+            .option-title
+            .option-description
+            .option-price
+    
+    .menu-title
+    .drinks menu-options
+        .option (3x)
+            .option-image
+            .option-title
+            .option-description
+            .option-price
+
+    .menu-title
+    .desserts menu-options
+        .option (3x)
+            .option-image
+            .option-title
+            .option-description
+            .option-price
+
+.bottom-bar
+    .order-button

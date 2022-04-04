@@ -1,3 +1,4 @@
+// it selects a meal
 function selectMeal(mealOption) {
     const selectedMeal = document.querySelector(".meals > .selected");
     if (selectedMeal !== null) {
@@ -9,11 +10,7 @@ function selectMeal(mealOption) {
     releaseOrderButton();
 }
 
-/*
-==========================================================================
-==========================================================================
-*/
-
+// it selects a drink
 function selectDrink(drinkOption) {
     const selectedDrink = document.querySelector(".drinks > .selected");
     if (selectedDrink !== null) {
@@ -25,11 +22,7 @@ function selectDrink(drinkOption) {
     releaseOrderButton();
 }
 
-/*
-==========================================================================
-==========================================================================
-*/
-
+// it selects a dessert
 function selectDessert(dessertOption) {
     const selectedDessert = document.querySelector(".desserts > .selected");
     if (selectedDessert !== null) {
@@ -41,32 +34,28 @@ function selectDessert(dessertOption) {
     releaseOrderButton();
 }
 
-/*
-==========================================================================
-==========================================================================
-*/
-
-/*
-AGORA O QUE EU QUERO É CRIAR UMA FUNÇÃO QUE MUDE O BOTÃO
-DE FINALIZAR O PEDIDO, MAS SÓ QUANDO AS 3 OPÇÕES ESTIVEREM SELECIONADAS.
-
-SOLUÇÃO (QUE NÃO GOSTEI MUITO, MAS QUE TÁ FUNCIONANDO):
-CHAMAR A FUNÇÃO DE HABILITAR/DESABILITAR BOTÃO DENTRO DAS FUNÇÕES
-DOS PEDIDOS.
-*/
 
 
+/*releaseOrderButton() {
+    it changes the order button from uncolored to green and
+    it enables the button to work, but only if the three
+    options on the menu are choosen.
+}*/
 function releaseOrderButton() {
+    //Getting the button
     const orderButton =  document.querySelector(".order-button");
 
+    //Changing it's properties
     orderButton.classList.add("release"); 
     orderButton.innerHTML = `<p>Fechar pedido</p>`;
     orderButton.disabled = false;
 
+    //Getting user choices
     const selectedMeal = document.querySelector(".meals > .selected");
     const selectedDrink = document.querySelector(".drinks > .selected");
     const selectedDessert = document.querySelector(".desserts > .selected");
 
+    //Stablishing conditions to change order-button appearance
     if (selectedMeal === null || selectedDrink === null || selectedDessert === null) {
         orderButton.classList.remove("release");   
         orderButton.innerHTML = `<p>Selecione os 3 itens<br>para fechar o pedido</p>`;
@@ -74,9 +63,13 @@ function releaseOrderButton() {
     }
 }
 
-
+/*finishOrder() {
+    it display the green screen, showing to the user
+    what are his choices and offering two options:
+        one to confirm and move on
+        other to cancel 
+}*/
 function finishOrder() {
-
     //Getting the informations from the menu
     const selectedMeal = document.querySelector(".meals > .selected");
     const mealName = selectedMeal.querySelector(".option-title p").innerHTML
@@ -110,11 +103,18 @@ function finishOrder() {
     document.querySelector(".user-data #name").innerHTML = `Nome: ${name}`;
     document.querySelector(".user-data #address").innerHTML = `Endereço: ${address}`;
 
-    document.querySelector(".cover").setAttribute("style", "display: initial");
+    //Uncovering the confirmation screen
+    document.querySelector(".body-cover").setAttribute("style", "display: initial");
     document.querySelector(".confirm-order").setAttribute("style", "display: initial");
 
 };
 
+
+/*confirmOrder(){
+    it the function at the button on the green screen.
+    it get user's data, organizes it in a particular format
+    and send it to the restaurant owner's contact.
+}*/
 function confirmOrder() {
     //Getting the informations from the menu
     const selectedMeal = document.querySelector(".meals > .selected");
@@ -148,12 +148,15 @@ Total: R$ ${total}\n
 ${name}
 ${address}`;
 
+    //Enconding and sending
     const uriMessage = encodeURIComponent(message);
-
     window.open(`https://wa.me/5521982235702?text=${uriMessage}`);    
 }
 
+/*cancelOrder(){
+    it hides green screen back again, so new choices can be made.
+}*/
 function cancelOrder() {
-    document.querySelector(".cover").setAttribute("style", "display: none");
+    document.querySelector(".body-cover").setAttribute("style", "display: none");
     document.querySelector(".confirm-order").setAttribute("style", "display: none");
 }
