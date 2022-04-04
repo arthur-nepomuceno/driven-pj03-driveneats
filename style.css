@@ -17,6 +17,7 @@ body {
     background-color: rgba(255, 255, 255, 0.9);
     position: fixed;
     z-index: 2;
+
     display: none;
 }
 
@@ -29,7 +30,6 @@ body {
     z-index: 3;
     
     position: fixed;
-    top: 10vh;
 
     display: none;
 }
@@ -100,6 +100,21 @@ body {
 
 .user-data p {
     margin-bottom: 14px;
+}
+
+.discount p {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    color: #ffffff;
+
+    margin-top: 24px;
+}
+
+.discount:hover {
+    cursor: pointer;
 }
 
 .confirm-order button {
