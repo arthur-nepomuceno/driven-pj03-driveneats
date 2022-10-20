@@ -1,4 +1,3 @@
-// it selects a meal
 function selectMeal(mealOption) {
     const selectedMeal = document.querySelector(".meals > .selected");
     if (selectedMeal !== null) {
@@ -10,7 +9,6 @@ function selectMeal(mealOption) {
     releaseOrderButton();
 }
 
-// it selects a drink
 function selectDrink(drinkOption) {
     const selectedDrink = document.querySelector(".drinks > .selected");
     if (selectedDrink !== null) {
@@ -22,7 +20,6 @@ function selectDrink(drinkOption) {
     releaseOrderButton();
 }
 
-// it selects a dessert
 function selectDessert(dessertOption) {
     const selectedDessert = document.querySelector(".desserts > .selected");
     if (selectedDessert !== null) {
@@ -34,11 +31,9 @@ function selectDessert(dessertOption) {
     releaseOrderButton();
 }
 
-
-
 /*releaseOrderButton() {
     it changes the order button from uncolored to green and
-    it enables the button to work, but only if the three
+    enables the button to work, but only if the three
     options on the menu are choosen.
 }*/
 function releaseOrderButton() {
@@ -89,8 +84,15 @@ function finishOrder() {
     + Number(dessertPrice.split(" ").pop().replace(",", "."))).toFixed(2);
 
     //Asking for user's name and address
-    const name = prompt("Por favor, digite o nome de quem irá receber o pedido:");
-    const address = prompt("Por favor, digite o endereço de entrega:");
+    let name = prompt("Por favor, digite o nome de quem irá receber o pedido:");
+    while(!name){
+        name = prompt("Por favor, digite o nome de quem irá receber o pedido:");
+    }
+
+    let address = prompt("Por favor, digite o endereço de entrega:");
+    while(!address){
+        address = prompt("Por favor, digite o endereço de entrega:");
+    }
 
     //Inserting the infos on the confirm order screen
     document.querySelector(".meal #name").innerHTML = mealName;
@@ -100,8 +102,8 @@ function finishOrder() {
     document.querySelector(".dessert #name").innerHTML = dessertName;
     document.querySelector(".dessert #price").innerHTML = dessertPrice;
     document.querySelector(".total-price #price").innerHTML = `R$ ${total.replace(".", ",")}`;
-    document.querySelector(".user-data #name").innerHTML = `Nome: ${name}`;
-    document.querySelector(".user-data #address").innerHTML = `Endereço: ${address}`;
+    document.querySelector(".user-data #name").innerHTML = `Nome: ${name}.`;
+    document.querySelector(".user-data #address").innerHTML = `Endereço para entrega: ${address}.`;
 
     //Uncovering the confirmation screen
     document.querySelector(".body-cover").setAttribute("style", "display: initial");
@@ -109,26 +111,27 @@ function finishOrder() {
 
 };
 
+let userAnswer;
 function discountFactor() {
-    // Gerando soma aleatória. Desconto máximo 30%
+    //Creating random sum. Max disccount is 30%
     const n1 = Math.floor(Math.random() * 16);
     const n2 = Math.floor(Math.random() * 16);
     const sum = n1 + n2;
 
 
-    const userAnswer = Number(prompt (`Quanto é ${n1} + ${n2}?`));
+    userAnswer = Number(prompt (`Quanto é ${n1} + ${n2}?`));
     let discountAnswer = document.querySelector(".discount p")
 
     if (userAnswer === sum) {
-        discountAnswer.innerHTML = `Boa! Pegou ${userAnswer}% de desconto!`;
+        discountAnswer.innerHTML = `Boa! Conseguiu ${userAnswer}% de desconto!`;
         document.querySelector(".total-price #name").innerHTML = `Total c/ desconto`
 
-        /* nesse caso, quero que o preço total mude para o valor com desconto */
+        /* in this case, I want the total price to change to the value with discount */
         let price = document.querySelector(".total-price #price").innerHTML.replace(",",".").replace("R$ ","")
         let newPrice = (price * (1-( userAnswer/ 100))).toFixed(2);
         document.querySelector(".total-price #price").innerHTML = `R$ ${newPrice.replace(".",",")}`
         
-        /*e quero que o botão desative no final*/
+        /*and I want the button to be disabled at the end*/
         document.querySelector(".discount").setAttribute("onclick", "");
     } else {
         discountAnswer.innerHTML = "Opa, você perdeu o desconto :/"
@@ -137,30 +140,30 @@ function discountFactor() {
 }
 
 /*confirmOrder(){
-    it the function at the button on the green screen.
+    it is the function at the button on the green screen.
     it get user's data, organizes it in a particular format
     and send it to the restaurant owner's contact.
 }*/
 function confirmOrder() {
     //Getting the informations from the menu
     const selectedMeal = document.querySelector(".meals > .selected");
-    const mealName = selectedMeal.querySelector(".option-title p").innerHTML
+    const mealName = selectedMeal.querySelector(".option-title p").innerHTML;
     const mealPrice = selectedMeal.querySelector(".option-price p").innerHTML;
 
     const selectedDrink = document.querySelector(".drinks > .selected");
-    const drinkName = selectedDrink.querySelector(".option-title p").innerHTML
-    const drinkPrice = selectedDrink.querySelector(".option-price p").innerHTML
+    const drinkName = selectedDrink.querySelector(".option-title p").innerHTML;
+    const drinkPrice = selectedDrink.querySelector(".option-price p").innerHTML;
 
     const selectedDessert = document.querySelector(".desserts > .selected");
-    const dessertName = selectedDessert.querySelector(".option-title p").innerHTML
-    const dessertPrice = selectedDessert.querySelector(".option-price p").innerHTML
+    const dessertName = selectedDessert.querySelector(".option-title p").innerHTML;
+    const dessertPrice = selectedDessert.querySelector(".option-price p").innerHTML; 
 
-    //Definindo a mensagem de desconto que vai para o whatsapp
+    //Defining disccount message to be sent to whatsapp
     desconto = document.querySelector(".discount p").innerHTML
-    if (desconto == "Opa, você perdeu o desconto :/") {
-        desconto = "Sem desconto";
+    if (desconto == "Opa, você perdeu o desconto :/" || desconto == "Quero desconto!") {
+        desconto = "sem desconto";
     } else {
-        desconto = document.querySelector(".discount p").innerHTML.replace("Boa! Pegou ","").replace(" de desconto!", "")
+        desconto = `${userAnswer}%`
     }
 
     const total = document.querySelector(".total-price #price").innerHTML
@@ -171,14 +174,17 @@ function confirmOrder() {
 
     //Building the message to be sent on whatsapp
     const message =
-    `Olá, gostaria de fazer o pedido:\n
-- Prato: ${mealName}
-- Bebida: ${drinkName}
-- Sobremesa: ${dessertName}\n
-Desconto: ${desconto} 
-Total: ${total}\n
-${name}
-${address}`;
+    `Olá! Gostaria de fazer o seguinte pedido:\n
+Prato: ${mealName}.
+Preço: ${mealPrice}.\n
+Bebida: ${drinkName}.
+Preço: ${drinkPrice}.\n
+Sobremesa: ${dessertName}. 
+Preço: ${dessertPrice}.\n
+Desconto: ${desconto}.
+Total: ${total}.\n
+${name}.
+${address}.`;
 
     //Enconding and sending
     const uriMessage = encodeURIComponent(message);
